@@ -1,0 +1,93 @@
+body {
+  background-color: #f6f8fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #24292e;
+}
+
+.search-bar {
+  display: block;
+  margin: 0 auto 20px;
+  padding: 10px 12px;
+  width: 100%;
+  max-width: 350px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #d0d7de;
+}
+
+th {
+  background-color: #f6f8fa;
+  color: #24292e;
+}
+
+img {
+  border-radius: 50%;
+}
+
+a {
+  color: #0969da;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.status {
+  text-align: center;
+  padding: 20px;
+  color: #57606a;
+  font-size: 16px;
+}
+
+.error {
+  color: #cf222e;
+}
+
+button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #0550ae;
+}
+
+.search-bar:focus, button:focus {
+  outline: 3px solid rgba(9,105,218,0.25);
+  outline-offset: 2px;
+}
