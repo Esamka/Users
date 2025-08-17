@@ -12,16 +12,16 @@ function App() {
   const [error, setError] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
 
+  // جلب قائمة المستخدمين الأساسية
   useEffect(() => {
     setLoading(true);
     setError("");
-
     axios.get("https://api.github.com/users")
       .then((response) => {
         setUsers(response.data);
         setLoading(false);
       })
-      .catch((err) => {
+      .catch(() => {
         setError("Failed to load users");
         setLoading(false);
       });
@@ -30,6 +30,19 @@ function App() {
   const filteredUsers = users.filter((user) =>
     user.login.toLowerCase().includes(search.toLowerCase())
   );
+
+  const handleSelectUser = (user) => {
+    setLoading(true);
+    axios.get(`https://api.github.com/users/${user.login}`)
+      .then((response) => {
+        setSelectedUser(response.data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError("Failed to load user details");
+        setLoading(false);
+      });
+  };
 
   if (selectedUser) {
     return (
@@ -51,7 +64,7 @@ function App() {
       )}
 
       {!loading && !error && filteredUsers.length > 0 && (
-        <UserTable users={filteredUsers} onSelectUser={setSelectedUser} />
+        <UserTable users={filteredUsers} onSelectUser={handleSelectUser} />
       )}
     </div>
   );
