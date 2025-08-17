@@ -1,93 +1,236 @@
+
+/* ===== Reset & Base ===== */
 body {
-  background-color: #f6f8fa;
+  background-color: #f4f6f8;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+  color: #24292f;
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px 20px;
 }
 
+/* ===== Title ===== */
 h1 {
   text-align: center;
-  color: #24292e;
+  color: #0d1117;
+  font-size: 32px;
+  margin-bottom: 25px;
 }
 
+/* ===== Search Bar ===== */
 .search-bar {
   display: block;
-  margin: 0 auto 20px;
-  padding: 10px 12px;
+  margin: 0 auto 25px;
+  padding: 12px 14px;
   width: 100%;
-  max-width: 350px;
+  max-width: 400px;
   border: 1px solid #d0d7de;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.05);
 }
 
+.search-bar:focus {
+  border-color: #0969da;
+  box-shadow: 0 0 6px rgba(9, 105, 218, 0.3);
+  outline: none;
+}
+
+/* ===== Table ===== */
 .table-wrapper {
   overflow-x: auto;
 }
-
 table {
   width: 100%;
   border-collapse: collapse;
+  margin: 20px auto;
   background: white;
-  border-radius: 6px;
+  border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
 }
 
 th, td {
-  padding: 12px;
+  padding: 14px 18px;
   text-align: left;
-  border-bottom: 1px solid #d0d7de;
+  font-size: 15px;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 th {
-  background-color: #f6f8fa;
-  color: #24292e;
+  background-color: #f9fafb;
+  color: #374151;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-img {
+tr:hover td {
+  background-color: #f3f4f6;
+}
+
+td img {
   border-radius: 50%;
+  border: 2px solid #e5e7eb;
+  width: 45px;
+  height: 45px;
 }
-
+/* ===== Links ===== */
 a {
   color: #0969da;
-  text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
 }
 
 a:hover {
   text-decoration: underline;
+  color: #0550ae;
 }
 
+img {
+  border-radius: 50%;
+  border: 2px solid #e5e7eb;
+}
+
+/* ===== Status & Error ===== */
 .status {
   text-align: center;
-  padding: 20px;
-  color: #57606a;
+  padding: 25px;
+  color: #6b7280;
   font-size: 16px;
 }
 
 .error {
-  color: #cf222e;
+  color: #dc2626;
+  font-weight: bold;
 }
 
+/* ===== Buttons ===== */
 button {
-  background-color: red;
+  background-color: #2563eb;
   color: white;
   border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
+  padding: 10px 16px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
 button:hover {
-  background-color: #0550ae;
+  background-color: #1e40af;
+  transform: scale(1.05);
 }
 
-.search-bar:focus, button:focus {
-  outline: 3px solid rgba(9,105,218,0.25);
+button:focus {
+  outline: 3px solid rgba(37,99,235,0.3);
   outline-offset: 2px;
 }
+
+/* ===== User Details ===== */
+.user-details {
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  /* box-shadow: 0px 3px 8px rgba(0,0,0,0.1); */
+}
+
+.user-details .avatar-large {
+  width: 160px;
+  border-radius: 50%;
+  border: 3px solid #e5e7eb;
+  margin-bottom: 20px;
+}
+
+.user-details h2 {
+  margin: 10px 0;
+  font-size: 26px;
+  color: #111827;
+}
+
+.user-details h3 {
+  color: #6b7280;
+  margin-bottom: 15px;
+}
+
+.user-details a {
+  display: inline-block;
+  margin-top: 15px;
+  text-decoration: none;
+  color: white;
+  background: #2563eb;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.user-details a:hover {
+  background: #1e40af;
+  transform: translateY(-2px);
+}
+
+/* ===== Center the table ===== */
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.table-container table {
+  width: 80%;              /* خلي الجدول أضيق (80% من الصفحة) */
+  max-width: 900px;        /* أقصى عرض */
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+}
+
+.loading {
+  color: blue;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.empty {
+  color: gray;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+.status {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.status.loading {
+  color: blue;
+}
+
+.status.error {
+  color: red;
+}
+
+.status.empty {
+  color: gray;
+  font-style: italic;
+}
+
+

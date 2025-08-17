@@ -1,56 +1,58 @@
 import React, { useState, useEffect } from "react";
-import { fakeUsers } from "./data";
-import SearchBar from "./SearchBar";
-import UserTable from "./UserTable";
+import { fakeUsers } from "./data"; 
+import SearchBar from "./components/SearchBar";
+import UserTable from "./components/UserTable";
+import UserDetails from "./components/UserDetails";
+import "./index.css";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [selectedUser, setSelectedUser] = useState(null); // جديد: لتحديد المستخدم المعروض
 
-  useEffect(() => { 
+  useEffect(() => {
     setLoading(true);
     setError("");
     setTimeout(() => {
       try {
         setUsers(fakeUsers);
         setLoading(false);
-      } catch {
-        setError("Failed to load data");
+      } catch (err) {
+        setError("Failed to load users");
         setLoading(false);
       }
-      
     }, 1000);
   }, []);
 
-  const filteredUsers = users.filter(user =>
+  const filteredUsers = users.filter((user) =>
     user.login.toLowerCase().includes(search.toLowerCase())
   );
 
+  // لو تم اختيار مستخدم، نعرض تفاصيله
+  if (selectedUser) {
+    return (
+      <div className="App">
+        <UserDetails user={selectedUser} goBack={() => setSelectedUser(null)} />
+      </div>
+    );
+  }
+
+  // الصفحة الرئيسية
   return (
-    <div className="container">
+    <div className="App">
       <h1>GitHub Users</h1>
+      <SearchBar search={search} setSearch={setSearch} />
 
-      <SearchBar value={search} onChange={setSearch} />
-
-      {loading && <p className="status">⏳ Loading...</p>}
-
-      {error && (
-        <div className="status error">
-          {error} <br />
-          <button onClick={() => window.location.reload()}>Retry</button>
-        </div>
+      {loading && <p className="status loading">Loading...</p>}
+      {error && <p className="status error">{error}</p>}
+      {!loading && !error && filteredUsers.length === 0 && (
+        <p className="status empty">No Results Found</p>
       )}
 
-      {!loading && !error && (
-        filteredUsers.length > 0 ? (
-          <div className="table-wrapper">
-            <UserTable users={filteredUsers} />
-          </div>
-        ) : (
-          <p className="status">No results found</p>
-        )
+      {!loading && !error && filteredUsers.length > 0 && (
+        <UserTable users={filteredUsers} onSelectUser={setSelectedUser} />
       )}
     </div>
   );

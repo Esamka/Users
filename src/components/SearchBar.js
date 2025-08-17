@@ -1,12 +1,13 @@
+
 import React from "react";
 
-function SearchBar({ value, onChange }) {
+function SearchBar({ search, setSearch }) {
   return (
     <input
       type="text"
       placeholder="Search by username..."
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
       className="search-bar"
       aria-label="Search by username"
     />
