@@ -1,5 +1,3 @@
-
-/* ===== Reset & Base ===== */
 body {
   background-color: #f4f6f8;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -14,7 +12,6 @@ body {
   padding: 30px 20px;
 }
 
-/* ===== Title ===== */
 h1 {
   text-align: center;
   color: #0d1117;
@@ -22,7 +19,6 @@ h1 {
   margin-bottom: 25px;
 }
 
-/* ===== Search Bar ===== */
 .search-bar {
   display: block;
   margin: 0 auto 25px;
@@ -42,7 +38,6 @@ h1 {
   outline: none;
 }
 
-/* ===== Table ===== */
 .table-wrapper {
   overflow-x: auto;
 }
@@ -81,7 +76,7 @@ td img {
   width: 45px;
   height: 45px;
 }
-/* ===== Links ===== */
+
 a {
   color: #0969da;
   font-weight: 500;
@@ -98,7 +93,6 @@ img {
   border: 2px solid #e5e7eb;
 }
 
-/* ===== Status & Error ===== */
 .status {
   text-align: center;
   padding: 25px;
@@ -111,7 +105,6 @@ img {
   font-weight: bold;
 }
 
-/* ===== Buttons ===== */
 button {
   background-color: #2563eb;
   color: white;
@@ -134,7 +127,6 @@ button:focus {
   outline-offset: 2px;
 }
 
-/* ===== User Details ===== */
 .user-details {
   text-align: center;
   margin-top: 20px;
@@ -179,7 +171,6 @@ button:focus {
   transform: translateY(-2px);
 }
 
-/* ===== Center the table ===== */
 .table-container {
   display: flex;
   justify-content: center;
@@ -187,8 +178,8 @@ button:focus {
 }
 
 .table-container table {
-  width: 80%;              /* خلي الجدول أضيق (80% من الصفحة) */
-  max-width: 900px;        /* أقصى عرض */
+  width: 80%;              
+  max-width: 900px;       
   border-collapse: collapse;
   background: white;
   border-radius: 10px;

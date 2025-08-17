@@ -10,8 +10,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [selectedUser, setSelectedUser] = useState(null); // جديد: لتحديد المستخدم المعروض
-
+  const [selectedUser, setSelectedUser] = useState(null); 
   useEffect(() => {
     setLoading(true);
     setError("");
@@ -30,7 +29,6 @@ function App() {
     user.login.toLowerCase().includes(search.toLowerCase())
   );
 
-  // لو تم اختيار مستخدم، نعرض تفاصيله
   if (selectedUser) {
     return (
       <div className="App">
@@ -39,7 +37,6 @@ function App() {
     );
   }
 
-  // الصفحة الرئيسية
   return (
     <div className="App">
       <h1>GitHub Users</h1>
