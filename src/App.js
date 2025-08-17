@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fakeUsers } from "./data"; 
+import axios from "axios";
 import SearchBar from "./components/SearchBar";
 import UserTable from "./components/UserTable";
 import UserDetails from "./components/UserDetails";
@@ -10,19 +10,21 @@ function App() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [selectedUser, setSelectedUser] = useState(null); 
+  const [selectedUser, setSelectedUser] = useState(null);
+
   useEffect(() => {
     setLoading(true);
     setError("");
-    setTimeout(() => {
-      try {
-        setUsers(fakeUsers);
+
+    axios.get("https://api.github.com/users")
+      .then((response) => {
+        setUsers(response.data);
         setLoading(false);
-      } catch (err) {
+      })
+      .catch((err) => {
         setError("Failed to load users");
         setLoading(false);
-      }
-    }, 1000);
+      });
   }, []);
 
   const filteredUsers = users.filter((user) =>
