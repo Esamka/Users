@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { fakeUsers } from "./data"; 
 import SearchBar from "./components/SearchBar";
 import UserTable from "./components/UserTable";
-import UserDetails from "./components/UserDetails";
+import UserDetailsPage from "./pages/UserDetailsPage";   
 import "./index.css";
+
 
 function App() {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [selectedUser, setSelectedUser] = useState(null); 
+
   useEffect(() => {
     setLoading(true);
     setError("");
@@ -29,29 +31,31 @@ function App() {
     user.login.toLowerCase().includes(search.toLowerCase())
   );
 
-  if (selectedUser) {
-    return (
-      <div className="App">
-        <UserDetails user={selectedUser} goBack={() => setSelectedUser(null)} />
-      </div>
-    );
-  }
-
   return (
-    <div className="App">
-      <h1>GitHub Users</h1>
-      <SearchBar search={search} setSearch={setSearch} />
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="App">
+              <h1>GitHub Users</h1>
+              <SearchBar search={search} setSearch={setSearch} />
 
-      {loading && <p className="status loading">Loading...</p>}
-      {error && <p className="status error">{error}</p>}
-      {!loading && !error && filteredUsers.length === 0 && (
-        <p className="status empty">No Results Found</p>
-      )}
+              {loading && <p className="status loading">Loading...</p>}
+              {error && <p className="status error">{error}</p>}
+              {!loading && !error && filteredUsers.length === 0 && (
+                <p className="status empty">No Results Found</p>
+              )}
 
-      {!loading && !error && filteredUsers.length > 0 && (
-        <UserTable users={filteredUsers} onSelectUser={setSelectedUser} />
-      )}
-    </div>
+              {!loading && !error && filteredUsers.length > 0 && (
+                <UserTable users={filteredUsers} />
+              )}
+            </div>
+          }
+        />
+        <Route path="/user/:id" element={<UserDetailsPage users={users} />} />
+      </Routes>
+    </Router>
   );
 }
 

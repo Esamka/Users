@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function UserTable({ users, onSelectUser }) {
+function UserTable({ users }) {
+  const navigate = useNavigate();
+
   return (
     <div className="table-container">
       <table>
@@ -19,7 +22,9 @@ function UserTable({ users, onSelectUser }) {
               </td>
               <td>{user.login}</td>
               <td>
-                <button onClick={() => onSelectUser(user)}>View Profile</button>
+                <button onClick={() => navigate(`/user/${user.id}`)}>
+                  View Profile
+                </button>
               </td>
             </tr>
           ))}
